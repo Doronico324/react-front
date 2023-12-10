@@ -11,7 +11,7 @@ import Home from './components/Home'
 import Cart from './components/Cart'
 import Registration from './components/Registration'
 import Order from './components/Order'
-import Product from './components/product'
+import Product from './components/products'
 
 function App() {
   const HOST_URL = "https://django-framework-store.onrender.com/products";
