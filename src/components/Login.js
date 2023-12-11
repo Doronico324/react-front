@@ -28,7 +28,7 @@ function Login() {
 
       // Redirect to the main page after successful login
       navigate('/react-store') // Replace '/' with the desired route
-      window.location.reload() // Reload the page after logout
+      //window.location.reload() // Reload the page after logout
 
       // Optionally, redirect or update state to reflect login success
     } catch (error) {
