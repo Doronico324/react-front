@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { BsCart4 } from 'react-icons/bs'
-import { jwtDecode } from 'jwt-decode' // Importing the named export directly without 'default'
+import { jwtDecode } from 'jwt-decode'
 import axios from 'axios'
 import '../App.css'
 
@@ -10,7 +10,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   const location = useLocation()
   const [token, setToken] = useState('')
   const [username, setUsername] = useState('')
-  const [userid, setuserid] = useState('')
+  const [userId, setUserId] = useState('');
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
     if (token) {
       try {
         const decodedToken = jwtDecode(token)
-        setuserid(decodedToken.user_id)
+        setUserId(decodedToken.user_id)
       } catch (error) {
         console.error('Error decoding token:', error)
       }
@@ -33,9 +33,9 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
 
   useEffect(() => {
     try {
-      if (userid) {
+      if (userId) {
         axios
-          .get(`https://django-rest-framework-store.onrender.com/user/${userid}/`)
+          .get(`https://django-framework-store.onrender.com/user/${userId}/`)
           .then((response) => {
             const fetchedUsername = response.data.username
             setUsername(fetchedUsername)
@@ -47,7 +47,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
     } catch (error) {
       console.error('Error in fetching username:', error)
     }
-  }, [userid])
+  }, [userId])
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -116,10 +116,10 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               <p className="welcome-message">Welcome, guest!</p>
             )}
           </div>{' '}
-          {token && userid && (
+          {token && userId && (
             <React.Fragment>
               <li className="nav-item">
-                <Link to={`/cart/${userid}`}>
+                <Link to={`/cart/${userId}`}>
                   <BsCart4 style={{ fontSize: '2em', color: 'white' }} />
                 </Link>
               </li>

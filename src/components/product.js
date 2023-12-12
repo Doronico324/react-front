@@ -1,45 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { jwtDecode } from 'jwt-decode' 
+import { jwtDecode } from 'jwt-decode';
 import '../App.css';
 
 function Product({ product }) {
-  const storedToken = localStorage.getItem('token');
-  const [token, setToken] = useState('')
-  const [userid, setuserid] = useState('')
+  const [token, setToken] = useState('');
+  const [decodedToken, setDecodedToken] = useState(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token')
+    const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      setToken(storedToken)
-    }
-  }, [])
+      setToken(storedToken);
 
-  useEffect(() => {
-    if (token) {
       try {
-        const decodedToken = jwtDecode(token)
-        setuserid(decodedToken.user_id)
+        const decodedToken = jwtDecode(storedToken);
+        setDecodedToken(decodedToken);
       } catch (error) {
-        console.error('Error decoding token:', error)
+        console.error('Error decoding token:', error);
       }
     }
-  }, [token])
+  }, []);
 
   const handleAddToCart = async (productId, userId) => {
     try {
-      const authToken = localStorage.getItem('token'); // Retrieve the authentication token from local storage
-  
+      const authToken = localStorage.getItem('token');
+
       const response = await fetch('https://django-framework-store.onrender.com/cart_items/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+          Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify({ product: productId, user: userId }), // Include both product and user ID
+        body: JSON.stringify({ product: productId, user: userId }),
       });
-  
+
       if (response.ok) {
         alert('Product added to cart!');
       } else {
@@ -49,7 +44,7 @@ function Product({ product }) {
       console.error('Error adding product to cart:', error);
       alert('Error adding product to cart');
     }
-  };  
+  };
 
   return (
     <div className="col-md-4 mb-4">
@@ -64,8 +59,8 @@ function Product({ product }) {
           <Card.Text><strong>Price:</strong> ${parseFloat(product.price).toFixed(2)}</Card.Text>
           <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text>
           <Card.Text><strong>Description:</strong>{product.description}</Card.Text>
-          {storedToken && (
-            <Button variant="primary" onClick={() => handleAddToCart(product.id, userid)}>
+          {token && (
+            <Button variant="primary" onClick={() => handleAddToCart(product.id, decodedToken?.user_id)}>
               Add to Cart
             </Button>
           )}
@@ -76,3 +71,4 @@ function Product({ product }) {
 }
 
 export default Product;
+

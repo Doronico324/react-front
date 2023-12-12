@@ -8,7 +8,7 @@ function Addproduct() {
   const [price, setPrice] = useState(0)
   function addProduct() {
     console.log("productAdded ", name, price);
-    axios.post("https://django-framework-store.onrender.com/products", { name: name, price: price, category: "" })((res) => {});
+    axios.post("https://django-framework-store.onrender.com/products/", { name: name, price: price, category: "" })((res) => {});
     }
     
   return (
