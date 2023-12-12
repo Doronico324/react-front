@@ -14,7 +14,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token')
+    const storedToken = localStorage.getItem('token',)
     if (storedToken) {
       setToken(storedToken)
     }
@@ -52,7 +52,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
   const handleLogout = () => {
     localStorage.removeItem('token')
     setUsername('')
-    window.location.reload() // Reload the page after logout
+    window.location.reload() 
     navigate('/react-store')
   }
 
@@ -78,7 +78,7 @@ function Navbar({ categories, handleCategoryClick, searchproduct }) {
               onChange={(e) => setFilteredProductname(e.target.value)}
               className="nav-input"
               style={{ marginRight: '10px' }}
-              placeholder="Search Product" // Optionally, add a placeholder
+              placeholder="Search Product" 
             />
           </li>
           <li className="nav">
