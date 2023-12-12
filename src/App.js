@@ -4,7 +4,7 @@ import Product from './components/product'
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
-import NoPage from './components/NoPage'
+//import NoPage from './components/NoPage'
 import MyFooter from './components/MyFooter'
 import Addproduct from './components/Addproduct'
 import Home from './components/Home'
@@ -102,7 +102,7 @@ function searchproduct(filterdProductname) {
           <Route path="/add_product" element={<Addproduct />} />
           <Route path="/cart/:userId" element={<Cart />} />
           <Route path='/register' element={<Registration />} />
-          <Route path="*" element={<NoPage />} />
+          <Route path="*" element={<Home />} />
         </Routes>
         <MyFooter />
       </BrowserRouter>
