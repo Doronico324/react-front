@@ -17,7 +17,7 @@ function MyFooter() {
             </Link>
           </li>
         </ul>
-        <p className="text-muted mb-0">© 2023 Company</p>
+        <p className="text-muted mb-0">The only One Stop Shop Online ©</p>
       </div>
     </footer>
   );

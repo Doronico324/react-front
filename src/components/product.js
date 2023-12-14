@@ -36,7 +36,7 @@ function Product({ product }) {
       });
 
       if (response.ok) {
-        alert('Product added to cart!');
+        alert('Product has been added to cart!');
       } else {
         alert('Failed to add product to cart');
       }
@@ -60,7 +60,7 @@ function Product({ product }) {
           <Card.Text><strong>Stock:</strong> {product.stock}</Card.Text>
           <Card.Text><strong>Description:</strong>{product.description}</Card.Text>
           {token && (
-            <Button variant="primary" onClick={() => handleAddToCart(product.id, decodedToken?.user_id)}>
+            <Button variant="primary" style={{ backgroundColor: 'black',borderColor: 'grey' }} onClick={() => handleAddToCart(product.id, decodedToken?.user_id)}>
               Add to Cart
             </Button>
           )}

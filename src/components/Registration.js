@@ -27,7 +27,7 @@ function Registration() {
       successTimer = setTimeout(() => {
         setSuccessMessage('');
         navigate('/login');
-      }, 5000);
+      }, 3000);
     }
 
     // Clear timers when component unmounts or when messages change
