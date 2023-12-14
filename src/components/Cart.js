@@ -80,10 +80,10 @@ function Cart() {
       const authToken = localStorage.getItem('token');
   
       const response = await axios.delete(
-        `https://django-framework-store.com/delete_cart_item/${userId}/${productId}/`,
+        `https://django-framework-store.onrender.com/delete_cart_item/${userId}/${productId}/`,
         {
           headers: {
-            Authorization: `Bearer ${authToken}`, // Include the token in the request headers
+            Authorization: `Bearer ${authToken}`, 
             'Content-Type': 'application/json',
           },
         }
